@@ -13,23 +13,23 @@ public class GildedRose {
     public void updateQuality() {
         for (int i = 0; i < items.length; i++) {
             if (isNotAgedBrie(items[i]) && isNotBackstage(items[i])) {
-                if (isQuantityMoreThanZero(items[i])) {
+                if (items[i].isQuantityMoreThanZero()) {
                     if (isNotSulfuras(items[i])) {
                         subtractQuantity(i);
                     }
                 }
             } else {
-                if (isQuantityLessThanFifty(items[i])) {
+                if (items[i].isQuantityLessThanFifty()) {
                     addQuantity(i);
                     if (!isNotBackstage(items[i])) {
                         if (items[i].sellIn < 11) {
-                            if (isQuantityLessThanFifty(items[i])) {
+                            if (items[i].isQuantityLessThanFifty()) {
                                 addQuantity(i);
                             }
                         }
 
                         if (items[i].sellIn < 6) {
-                            if (isQuantityLessThanFifty(items[i])) {
+                            if (items[i].isQuantityLessThanFifty()) {
                                 addQuantity(i);
                             }
                         }
@@ -44,7 +44,7 @@ public class GildedRose {
             if (items[i].sellIn < 0) {
                 if (isNotAgedBrie(items[i])) {
                     if (isNotBackstage(items[i])) {
-                        if (isQuantityMoreThanZero(items[i])) {
+                        if (items[i].isQuantityMoreThanZero()) {
                             if (isNotSulfuras(items[i])) {
                                 subtractQuantity(i);
                             }
@@ -53,7 +53,7 @@ public class GildedRose {
                         items[i].quality = 0;
                     }
                 } else {
-                    if (isQuantityLessThanFifty(items[i])) {
+                    if (items[i].isQuantityLessThanFifty()) {
                         addQuantity(i);
                     }
                 }
@@ -67,14 +67,6 @@ public class GildedRose {
 
     private void subtractQuantity(int i) {
         items[i].quality = items[i].quality - 1;
-    }
-
-    private boolean isQuantityLessThanFifty(Item item) {
-        return item.quality < 50;
-    }
-
-    private boolean isQuantityMoreThanZero(Item item) {
-        return item.quality > 0;
     }
 
     private boolean isNotAgedBrie(Item item) {

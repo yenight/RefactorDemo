@@ -14,6 +14,14 @@ public class Item {
         this.quality = quality;
     }
 
+    public boolean isQuantityLessThanFifty() {
+        return quality < 50;
+    }
+
+    public boolean isQuantityMoreThanZero() {
+        return quality > 0;
+    }
+
    @Override
    public String toString() {
         return this.name + ", " + this.sellIn + ", " + this.quality;
