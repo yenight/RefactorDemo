@@ -15,22 +15,22 @@ public class GildedRose {
             if (isNotAgedBrie(items[i]) && isNotBackstage(items[i])) {
                 if (items[i].isQuantityMoreThanZero()) {
                     if (isNotSulfuras(items[i])) {
-                        subtractQuantity(i);
+                        items[i].subtractQuantity();
                     }
                 }
             } else {
                 if (items[i].isQuantityLessThanFifty()) {
-                    addQuantity(i);
+                    items[i].addQuantity();
                     if (!isNotBackstage(items[i])) {
                         if (items[i].sellIn < 11) {
                             if (items[i].isQuantityLessThanFifty()) {
-                                addQuantity(i);
+                                items[i].addQuantity();
                             }
                         }
 
                         if (items[i].sellIn < 6) {
                             if (items[i].isQuantityLessThanFifty()) {
-                                addQuantity(i);
+                                items[i].addQuantity();
                             }
                         }
                     }
@@ -46,7 +46,7 @@ public class GildedRose {
                     if (isNotBackstage(items[i])) {
                         if (items[i].isQuantityMoreThanZero()) {
                             if (isNotSulfuras(items[i])) {
-                                subtractQuantity(i);
+                                items[i].subtractQuantity();
                             }
                         }
                     } else {
@@ -54,19 +54,11 @@ public class GildedRose {
                     }
                 } else {
                     if (items[i].isQuantityLessThanFifty()) {
-                        addQuantity(i);
+                        items[i].addQuantity();
                     }
                 }
             }
         }
-    }
-
-    private void addQuantity(int i) {
-        items[i].quality = items[i].quality + 1;
-    }
-
-    private void subtractQuantity(int i) {
-        items[i].quality = items[i].quality - 1;
     }
 
     private boolean isNotAgedBrie(Item item) {

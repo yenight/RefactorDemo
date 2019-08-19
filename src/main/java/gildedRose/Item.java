@@ -14,12 +14,20 @@ public class Item {
         this.quality = quality;
     }
 
-    public boolean isQuantityLessThanFifty() {
+    protected boolean isQuantityLessThanFifty() {
         return quality < 50;
     }
 
-    public boolean isQuantityMoreThanZero() {
+    protected boolean isQuantityMoreThanZero() {
         return quality > 0;
+    }
+
+    protected void addQuantity() {
+        quality++;
+    }
+
+    protected void subtractQuantity() {
+        quality--;
     }
 
    @Override
