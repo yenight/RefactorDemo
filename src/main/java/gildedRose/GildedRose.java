@@ -12,6 +12,9 @@ public class GildedRose {
                 case Item.AGED_BRIE:
                     new AgedBrieStrategy().updateQuality(items[i]);
                     break;
+                case Item.BACKSTAGE:
+                    new BackstageStrategy().updateQuality(items[i]);
+                    break;
                 default:
                     if (items[i].isNotAgedBrie() && items[i].isNotBackstage()) {
                         if (items[i].isQuantityMoreThanZero()) {
@@ -43,20 +46,14 @@ public class GildedRose {
                     }
 
                     if (items[i].isSellInLessThanNumber(0)) {
-                        if (items[i].isNotAgedBrie()) {
-                            if (items[i].isNotBackstage()) {
-                                if (items[i].isQuantityMoreThanZero()) {
-                                    if (items[i].isNotSulfuras()) {
-                                        items[i].subtractQuantity();
-                                    }
+                        if (items[i].isNotBackstage()) {
+                            if (items[i].isQuantityMoreThanZero()) {
+                                if (items[i].isNotSulfuras()) {
+                                    items[i].subtractQuantity();
                                 }
-                            } else {
-                                items[i].setQuality(0);
                             }
                         } else {
-                            if (items[i].isQuantityLessThanFifty()) {
-                                items[i].addQuantity();
-                            }
+                            items[i].setQuality(0);
                         }
                     }
                     break;
