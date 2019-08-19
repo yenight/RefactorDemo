@@ -2,11 +2,15 @@ package gildedRose;
 
 public class Item {
 
-    public String name;
+    public final static String AGED_BRIE = "Aged Brie";
+    public final static String BACKSTAGE = "Backstage passes to a TAFKAL80ETC concert";
+    public final static String SULFURAS = "Sulfuras, Hand of Ragnaros";
 
-    public int sellIn;
+    private String name;
 
-    public int quality;
+    private int sellIn;
+
+    private int quality;
 
     public Item(String name, int sellIn, int quality) {
         this.name = name;
@@ -14,20 +18,56 @@ public class Item {
         this.quality = quality;
     }
 
-    protected boolean isQuantityLessThanFifty() {
+    public String getName() {
+        return name;
+    }
+
+    public int getSellIn() {
+        return sellIn;
+    }
+
+    public int getQuality() {
+        return quality;
+    }
+
+    public void setQuality(int quality) {
+        this.quality = quality;
+    }
+
+    boolean isQuantityLessThanFifty() {
         return quality < 50;
     }
 
-    protected boolean isQuantityMoreThanZero() {
+    boolean isQuantityMoreThanZero() {
         return quality > 0;
     }
 
-    protected void addQuantity() {
+    boolean isSellInLessThanNumber(int number) {
+        return sellIn < number;
+    }
+
+    void addQuantity() {
         quality++;
     }
 
-    protected void subtractQuantity() {
+    void subtractQuantity() {
         quality--;
+    }
+
+    void subtractSellIn() {
+        sellIn--;
+    }
+
+    boolean isNotAgedBrie() {
+        return !name.equals(AGED_BRIE);
+    }
+
+    boolean isNotBackstage() {
+        return !name.equals(BACKSTAGE);
+    }
+
+    boolean isNotSulfuras() {
+        return !name.equals(SULFURAS);
     }
 
    @Override
