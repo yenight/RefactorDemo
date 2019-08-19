@@ -20,14 +20,6 @@ public class Item {
         return name;
     }
 
-    public int getSellIn() {
-        return sellIn;
-    }
-
-    public int getQuality() {
-        return quality;
-    }
-
     public void setQuality(int quality) {
         this.quality = quality;
     }
@@ -54,18 +46,6 @@ public class Item {
 
     void subtractSellIn() {
         sellIn--;
-    }
-
-    boolean isNotAgedBrie() {
-        return !name.equals(AGED_BRIE);
-    }
-
-    boolean isNotBackstage() {
-        return !name.equals(BACKSTAGE);
-    }
-
-    boolean isNotSulfuras() {
-        return !name.equals(SULFURAS);
     }
 
    @Override

@@ -15,47 +15,10 @@ public class GildedRose {
                 case Item.BACKSTAGE:
                     new BackstageStrategy().updateQuality(items[i]);
                     break;
+                case Item.SULFURAS:
+                    break;
                 default:
-                    if (items[i].isNotAgedBrie() && items[i].isNotBackstage()) {
-                        if (items[i].isQuantityMoreThanZero()) {
-                            if (items[i].isNotSulfuras()) {
-                                items[i].subtractQuantity();
-                            }
-                        }
-                    } else {
-                        if (items[i].isQuantityLessThanFifty()) {
-                            items[i].addQuantity();
-                            if (!items[i].isNotBackstage()) {
-                                if (items[i].isSellInLessThanNumber(11)) {
-                                    if (items[i].isQuantityLessThanFifty()) {
-                                        items[i].addQuantity();
-                                    }
-                                }
-
-                                if (items[i].isSellInLessThanNumber(6)) {
-                                    if (items[i].isQuantityLessThanFifty()) {
-                                        items[i].addQuantity();
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    if (items[i].isNotSulfuras()) {
-                        items[i].subtractSellIn();
-                    }
-
-                    if (items[i].isSellInLessThanNumber(0)) {
-                        if (items[i].isNotBackstage()) {
-                            if (items[i].isQuantityMoreThanZero()) {
-                                if (items[i].isNotSulfuras()) {
-                                    items[i].subtractQuantity();
-                                }
-                            }
-                        } else {
-                            items[i].setQuality(0);
-                        }
-                    }
+                    new OtherStrategy().updateQuality(items[i]);
                     break;
             }
         }
