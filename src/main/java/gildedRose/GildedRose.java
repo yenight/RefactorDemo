@@ -7,18 +7,18 @@ public class GildedRose {
     }
 
     public void updateQuality() {
-        for (int i = 0; i < items.length; i++) {
-            switch (items[i].getName()) {
+        for (Item item : items) {
+            switch (item.getName()) {
                 case Item.AGED_BRIE:
-                    new AgedBrieStrategy().updateQuality(items[i]);
+                    new AgedBrieStrategy().updateQuality(item);
                     break;
                 case Item.BACKSTAGE:
-                    new BackstageStrategy().updateQuality(items[i]);
+                    new BackstageStrategy().updateQuality(item);
                     break;
                 case Item.SULFURAS:
                     break;
                 default:
-                    new OtherStrategy().updateQuality(items[i]);
+                    new OtherStrategy().updateQuality(item);
                     break;
             }
         }
