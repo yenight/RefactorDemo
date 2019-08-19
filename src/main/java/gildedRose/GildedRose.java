@@ -12,42 +12,41 @@ public class GildedRose {
 
     public void updateQuality() {
         for (int i = 0; i < items.length; i++) {
-            if (isNotAgedBrieOrBackstage(items[i])) {
+            if (isNotAgedBrie(items[i]) && isNotBackstage(items[i])) {
                 if (isQuantityMoreThanZero(items[i])) {
-                    if (!items[i].name.equals(SULFURAS)) {
-                        items[i].quality = items[i].quality - 1;
+                    if (isNotSulfuras(items[i])) {
+                        subtractQuantity(i);
                     }
                 }
             } else {
                 if (isQuantityLessThanFifty(items[i])) {
-                    items[i].quality = items[i].quality + 1;
-
-                    if (items[i].name.equals(BACKSTAGE)) {
+                    addQuantity(i);
+                    if (!isNotBackstage(items[i])) {
                         if (items[i].sellIn < 11) {
                             if (isQuantityLessThanFifty(items[i])) {
-                                items[i].quality = items[i].quality + 1;
+                                addQuantity(i);
                             }
                         }
 
                         if (items[i].sellIn < 6) {
                             if (isQuantityLessThanFifty(items[i])) {
-                                items[i].quality = items[i].quality + 1;
+                                addQuantity(i);
                             }
                         }
                     }
                 }
             }
 
-            if (!items[i].name.equals(SULFURAS)) {
+            if (isNotSulfuras(items[i])) {
                 items[i].sellIn = items[i].sellIn - 1;
             }
 
             if (items[i].sellIn < 0) {
-                if (!items[i].name.equals(AGED_BRIE)) {
-                    if (!items[i].name.equals(BACKSTAGE)) {
+                if (isNotAgedBrie(items[i])) {
+                    if (isNotBackstage(items[i])) {
                         if (isQuantityMoreThanZero(items[i])) {
-                            if (!items[i].name.equals(SULFURAS)) {
-                                items[i].quality = items[i].quality - 1;
+                            if (isNotSulfuras(items[i])) {
+                                subtractQuantity(i);
                             }
                         }
                     } else {
@@ -55,11 +54,19 @@ public class GildedRose {
                     }
                 } else {
                     if (isQuantityLessThanFifty(items[i])) {
-                        items[i].quality = items[i].quality + 1;
+                        addQuantity(i);
                     }
                 }
             }
         }
+    }
+
+    private void addQuantity(int i) {
+        items[i].quality = items[i].quality + 1;
+    }
+
+    private void subtractQuantity(int i) {
+        items[i].quality = items[i].quality - 1;
     }
 
     private boolean isQuantityLessThanFifty(Item item) {
@@ -70,8 +77,17 @@ public class GildedRose {
         return item.quality > 0;
     }
 
-    private boolean isNotAgedBrieOrBackstage(Item item) {
-        return !item.name.equals(AGED_BRIE)
-                && !item.name.equals(BACKSTAGE);
+    private boolean isNotAgedBrie(Item item) {
+        return !item.name.equals(AGED_BRIE);
     }
+
+    private boolean isNotBackstage(Item item) {
+        return !item.name.equals(BACKSTAGE);
+    }
+
+    private boolean isNotSulfuras(Item item) {
+        return !item.name.equals(SULFURAS);
+    }
+
+
 }
