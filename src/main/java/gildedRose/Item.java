@@ -7,9 +7,7 @@ public class Item {
     public final static String SULFURAS = "Sulfuras, Hand of Ragnaros";
 
     private String name;
-
     private int sellIn;
-
     private int quality;
 
     public Item(String name, int sellIn, int quality) {
